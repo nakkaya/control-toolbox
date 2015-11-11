@@ -4,6 +4,23 @@ A Clojure library designed to ... well, that part is up to you.
 
 ## Usage
 
+### Motion
+
+#### Holomonic Motion
+
+Initialize the model,
+
+```
+(def motion (holomonic-motion-init {:diameter 0.057
+                                    :angles [60 135 225 300]}))
+```
+
+Get motor speeds to direction,
+
+```
+(holomonic-motion-speeds motion (vector-2d 10 10) 0)
+```
+
 ### Control
 
 #### PID

@@ -16,7 +16,7 @@
            specs)))
 
 (defn holomonic-motion-ratios [motion x y r]
-  (flatten (m/mmul (m/matrix (:vcm motion)) (m/matrix [[x] [y] [r]]))))
+  (m/eseq (m/mmul (m/matrix (:vcm motion)) (m/matrix [[x] [y] [r]]))))
 
 (defn holomonic-motion-speeds [motion {x :x y :y} r]
   (let [{:keys [ang-vel-fn]} motion]

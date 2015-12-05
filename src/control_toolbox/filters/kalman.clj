@@ -7,7 +7,7 @@
 ;;cvkalman.cpp - http://sourcecodebrowser.com/opencv/1.0.0/cvkalman_8cpp.html
 
 (let [fn (Function/getFunction "opencv_core" "cvReleaseMat")]
-  (defn cvReleaseMat [mat]
+  (defn cvReleaseMat [^com.nakkaya.filter.kalman.CvMat$ByReference mat]
     (.invoke fn (to-array [(PointerByReference. (.getPointer mat))]))))
 
 (let [CV_32FC1 5
@@ -24,7 +24,7 @@
       cvGetReal2D-fn (Function/getFunction "opencv_core" "cvGetReal2D")
       get-idx (fn [mat r c]
                 (.invoke cvGetReal2D-fn Double (to-array [mat r c])))]
-  (defn update-CvMat-float [mat data]
+  (defn update-CvMat-float [^com.nakkaya.filter.kalman.CvMat$ByReference mat data]
     (let [_rows (-> mat .field1 .rows)
           _cols (-> mat .field2 .cols)
           [rows cols] (mat/shape data)]
@@ -42,7 +42,7 @@
           mat (create-mat rows cols)]
       (update-CvMat-float mat data)
       mat))
-  (defn from-CvMat-float [mat]
+  (defn from-CvMat-float [^com.nakkaya.filter.kalman.CvMat$ByReference mat]
     (let [rows (-> mat .field1 .rows)
           cols (-> mat .field2 .cols)
           data (reduce (fn[rows idx]
@@ -57,15 +57,15 @@
              (to-array [nDynamParams nMeasureParams nControlParams]))))
 
 (let [cvReleaseKalman (Function/getFunction "opencv_video" "cvReleaseKalman")]
-  (defn kalman-release [filter]
+  (defn kalman-release [^com.nakkaya.filter.kalman.CvKalman$ByReference filter]
     (.invoke cvReleaseKalman (to-array [(PointerByReference. (.getPointer filter))]))))
 
 (let [cvKalmanPredict (Function/getFunction "opencv_video" "cvKalmanPredict")]
-  (defn kalman-predict [filter]
+  (defn kalman-predict [^com.nakkaya.filter.kalman.CvKalman$ByReference filter]
     (.invoke cvKalmanPredict (to-array [filter 0]))))
 
 (let [cvKalmanCorrect (Function/getFunction "opencv_video" "cvKalmanCorrect")]
-  (defn kalman-correct [filter mat]
+  (defn kalman-correct [^com.nakkaya.filter.kalman.CvKalman$ByReference filter mat]
     (.invoke cvKalmanCorrect com.nakkaya.filter.kalman.CvMat$ByReference (to-array [filter mat]))))
 
 (defprotocol KalmanProtocol
@@ -88,7 +88,7 @@
 (defn kalman-filter [nDynamParams nMeasureParams
                      state-pre transition-matrix measurement-matrix
                      process-noise-cov measurement-noise-cov error-cov-post]
-  (let [filter (kalman-create nDynamParams nMeasureParams 0)
+  (let [^com.nakkaya.filter.kalman.CvKalman$ByReference filter (kalman-create nDynamParams nMeasureParams 0)
         measurement (to-CvMat-float
                      (mat/matrix
                       (reduce

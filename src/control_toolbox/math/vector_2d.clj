@@ -76,8 +76,8 @@
 (defn rotate 
   "See, http://en.wikipedia.org/wiki/Rotation_(mathematics)"
   [{ux :x uy :y} angle]
-  (let [s (Math/sin (Math/toRadians angle))
-	c (Math/cos (Math/toRadians angle))]
+  (let [s (Math/sin angle)
+	c (Math/cos angle)]
     (vector-2d (ga/- (ga/* c ux) (ga/* s uy)) 
 	       (ga/+ (ga/* s ux) (ga/* c uy)))))
 
@@ -92,7 +92,7 @@
   (let [vp (ga/- point view-pos)
 	cos (/ (dot-product vp direction)
 	       (ga/* (magnitude vp) (magnitude direction)))]
-    (> cos (Math/cos (Math/toRadians angle)))))
+    (> cos (Math/cos angle))))
 
 (defn parallel? 
   "Returns true if vectors are parallel to each other."

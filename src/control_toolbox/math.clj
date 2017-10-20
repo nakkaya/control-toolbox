@@ -9,9 +9,9 @@
     (< x min) min
     :default x))
 
-(defn in-range? [x a b]
-  (cond (< x a) false
-        (> x b) false
+(defn in-range? [x min max]
+  (cond (< x min) false
+        (> x max) false
         :else true))
 
 (defn to-radians [x]

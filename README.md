@@ -48,16 +48,18 @@ Get motor speeds to direction,
    The effects of increasing each of the controller parameters KP , KI
    and KD can be summarized as,
 
-      |----------+-----------+-----------+---------------+-----------|
-      | Response | Rise Time | Overshoot | Settling Time | S-S Error |
-      |----------+-----------+-----------+---------------+-----------|
-      | Kp       | Decrease  | Increase  |               | Decrease  |
-      |----------+-----------+-----------+---------------+-----------|
-      | Ki       | Decrease  | Increase  | Increase      | Eliminate |
-      |----------+-----------+-----------+---------------+-----------|
-      | Kd       |           | Decrease  | Decrease      |           |
-      |----------+-----------+-----------+---------------+-----------|
-   
+```
+    |----------+-----------+-----------+---------------+-----------|
+    | Response | Rise Time | Overshoot | Settling Time | S-S Error |
+    |----------+-----------+-----------+---------------+-----------|
+    | Kp       | Decrease  | Increase  |               | Decrease  |
+    |----------+-----------+-----------+---------------+-----------|
+    | Ki       | Decrease  | Increase  | Increase      | Eliminate |
+    |----------+-----------+-----------+---------------+-----------|
+    | Kd       |           | Decrease  | Decrease      |           |
+    |----------+-----------+-----------+---------------+-----------|
+```
+
 ## License
 
 Copyright © 2015 FIXME

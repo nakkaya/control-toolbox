@@ -1,6 +1,6 @@
 # control-toolbox
 
-A Clojure library designed to ... well, that part is up to you.
+Robotics Toolbox
 
 ## Usage
 
@@ -48,15 +48,15 @@ Get motor speeds to direction,
    The effects of increasing each of the controller parameters KP , KI
    and KD can be summarized as,
 
-     |----------+-----------+-----------+---------------+-----------|
-     | Response | Rise Time | Overshoot | Settling Time | S-S Error |
-     |----------+-----------+-----------+---------------+-----------|
-     | Kp       | Decrease  | Increase  |               | Decrease  |
-     |----------+-----------+-----------+---------------+-----------|
-     | Ki       | Decrease  | Increase  | Increase      | Eliminate |
-     |----------+-----------+-----------+---------------+-----------|
-     | Kd       |           | Decrease  | Decrease      |           |
-     |----------+-----------+-----------+---------------+-----------|
+      |----------+-----------+-----------+---------------+-----------|
+      | Response | Rise Time | Overshoot | Settling Time | S-S Error |
+      |----------+-----------+-----------+---------------+-----------|
+      | Kp       | Decrease  | Increase  |               | Decrease  |
+      |----------+-----------+-----------+---------------+-----------|
+      | Ki       | Decrease  | Increase  | Increase      | Eliminate |
+      |----------+-----------+-----------+---------------+-----------|
+      | Kd       |           | Decrease  | Decrease      |           |
+      |----------+-----------+-----------+---------------+-----------|
    
 ## License
 

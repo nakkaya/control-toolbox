@@ -1,6 +1,5 @@
 (ns control-toolbox.pid-test
   (:require [clojure.test :refer :all]
-            [control-toolbox.core :refer :all]
             [control-toolbox.control.pid :refer :all]))
 
 (deftest pid-setpoint-range

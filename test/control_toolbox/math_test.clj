@@ -1,7 +1,6 @@
 (ns control-toolbox.math-test
   (:use [control-toolbox.math])
-  (:require [clojure.test :refer :all]
-            [control-toolbox.core :refer :all]))
+  (:require [clojure.test :refer :all]))
 
 (deftest scale-test
   (is (= 0 (scale 0 0 1500 0 500)))

@@ -1,7 +1,6 @@
 (ns control-toolbox.vector-2d-test
   (:use [control-toolbox.math.vector-2d])
-  (:require [clojure.test :refer :all]
-            [control-toolbox.core :refer :all]))
+  (:require [clojure.test :refer :all]))
 
 (deftest arithmetic-test
   (let [u [1.0 2.0]

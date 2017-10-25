@@ -12,6 +12,7 @@
 
 (deftest operations-test
   (let [u [1.0 1.0]]
+    (is (= {:r 13.0 :t 0.39479}) (to-polar [12 5]))
     (is (= {:r 13.0 :t 0.39479}) (to-polar 12 5))
     (is (= [-1.0 -1.0] (negative u)))
     (is (= 1.4142135623730951 (magnitude u)))

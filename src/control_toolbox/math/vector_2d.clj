@@ -10,8 +10,11 @@
 (defn mul [u v]
   (cm/mul u v))
 
-(defn to-polar [x y]
-  {:r (Math/sqrt (add (mul x x) (mul y y))) :t (Math/atan2 y x)})
+(defn to-polar
+  ([[x y]]
+   (to-polar x y))
+  ([x y]
+   {:r (Math/sqrt (add (mul x x) (mul y y))) :t (Math/atan2 y x)}))
 
 (defn equal? [[ux uy] [vx vy]]
   (and (= ux vx)

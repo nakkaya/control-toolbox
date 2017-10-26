@@ -133,13 +133,10 @@
         {:keys [r t]} (to-polar bx by)]
     (add a (to-cartesian (- d) t))))
 
-
 (defn circle-circle-collision
   "Given two circles c1 with radius r1 and c2 with radius r2, return true if circles collide."
   [c1 r1 c2 r2]
   (<= (dist c1 c2) (Math/sqrt (Math/pow (add r1 r2) 2))))
-
-
 
 (defn line-intersection
   "Given two line segments ab and cd returns the intersection point if they intersect otherwise nil.

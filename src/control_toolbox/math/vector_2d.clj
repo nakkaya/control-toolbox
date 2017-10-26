@@ -80,6 +80,10 @@
           (> proj-mag (magnitude ab)) b
           :default (add (project ac ab) a))))
 
+(defn cross-track-distance [start end loc]
+  (let [xtrack-pt (closest-point-on-line start end loc)]
+    (dist xtrack-pt loc)))
+
 (defn closest-point-on-circle [p c r]
   (let [v (normalize (sub p c))]
     (add c (mul v r))))

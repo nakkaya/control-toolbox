@@ -72,4 +72,6 @@
                    [-10.0 -10.0] [10.0 -10.0]]
                   [20.0 20.0] 10.0)))
     (is (= 90.0 (Math/toDegrees (angle-between-points [1.0 0.0] [0.0 1.0]))))
-    (is (= 45.0 (Math/toDegrees (angle-between-points [1.0 0.0] [1.0 1.0]))))))
+    (is (= 45.0 (Math/toDegrees (angle-between-points [1.0 0.0] [1.0 1.0]))))
+    
+    (is (= 2 (cross-track-distance [0 0] [10 0] [1 2])))))

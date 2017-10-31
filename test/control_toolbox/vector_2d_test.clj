@@ -20,6 +20,7 @@
     (is (= 2.0 (dist [0.0 0.0] [2.0 0.0])))
     (is (= 0.0 (dist-manhattan [1.0 1.0] [1.0 1.0])))
     (is (= [0.7071067811865475 0.7071067811865475] (normalize u)))
+    (is (= [0 0] (normalize [0 0])))
     (is (= 2.0 (dot-product u u)))
     (is (= "1.00"
            (format "%.2f" (-> (project [1.0 1.0] [10.0 10.0]) first))))
@@ -74,4 +75,4 @@
     (is (= 90.0 (Math/toDegrees (angle-between-points [1.0 0.0] [0.0 1.0]))))
     (is (= 45.0 (Math/toDegrees (angle-between-points [1.0 0.0] [1.0 1.0]))))
     
-    (is (= 2 (cross-track-distance [0 0] [10 0] [1 2])))))
+    (is (= 2.0 (cross-track-distance [0 0] [10 0] [1 2])))))

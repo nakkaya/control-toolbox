@@ -39,7 +39,8 @@
 
 (defn normalize [[ux uy]]
   (let [mag (magnitude [ux uy])]
-    (if-not (== mag 0)
+    (if (== mag 0)
+      [0 0]
       [(/ ux mag) (/ uy mag)])))
 
 (defn dot-product [[ux uy] [vx vy]]

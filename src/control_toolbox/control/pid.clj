@@ -20,7 +20,7 @@
          [in-max in-min out-max out-min] bounds
          pid (PIDController. kp ki kd (if (nil? continuous)
                                         false continuous))
-         controller (atom (assoc s :controller pid))
+         controller (atom (assoc s :controller pid :error 0.0))
          watch-fn (fn [_key _ref old-value new-value]
                     (update-pid new-value (:controller new-value)))]
      (update-pid s pid)
@@ -31,6 +31,7 @@
          [in-max in-min out-max out-min] bounds
          [range-max range-min] (power-band out-max out-min)]
      (.update (:controller @s) (scale v in-min in-max range-min range-max))
+     (swap! s assoc :error (.getError (:controller @s)))
      (scale (.getResult (:controller @s)) range-min range-max out-min out-max))))
 
 (defmacro defpid

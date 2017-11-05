@@ -2,6 +2,20 @@
   (:require [clojure.test :refer :all]
             [control-toolbox.control.pid :refer :all]))
 
+(deftest pid-test
+  (testing "Test PID"
+    (let [spec {:kp 2
+                :ki 0
+                :kd 0
+                :set-point 0
+                :bounds [10 -10 1 -1]}
+          p (pid spec)]
+      (is (= 0.0 (:error @p)))
+      (pid p 0)
+      (is (= 0.0 (:error @p)))
+      (pid p 5)
+      (is (= -0.5 (:error @p))))))
+
 (deftest pid-setpoint-range
   (testing "Test Set Point Range"
     (let [spec {:kp 2

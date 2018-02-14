@@ -46,6 +46,9 @@
 (defn dot-product [[ux uy] [vx vy]]
   (add (mul ux vx) (mul uy vy)))
 
+(defn cross-product [[ax ay] [bx by]]
+  (- (* ax by) (* ay bx)))
+
 (defn project [[ux uy] [vx vy]]
   (let [unit-v (normalize [vx vy])
         dot    (dot-product [ux uy] unit-v)]

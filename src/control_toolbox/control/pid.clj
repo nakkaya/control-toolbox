@@ -14,12 +14,14 @@
     (.setInputRange pid range-min range-max)
     (.setOutputRange pid range-min range-max)))
 
+(defn new-pid [kp ki kd continuous]
+  (PIDController. kp ki kd continuous))
+
 (defn pid
   ([s]
    (let [{:keys [kp kd ki bounds continuous]} s
          [in-max in-min out-max out-min] bounds
-         pid (PIDController. kp ki kd (if (nil? continuous)
-                                        false continuous))
+         pid (new-pid kp ki kd (if (nil? continuous) false continuous))
          controller (atom (assoc s :controller pid :error 0.0))
          watch-fn (fn [_key _ref old-value new-value]
                     (update-pid new-value (:controller new-value)))]

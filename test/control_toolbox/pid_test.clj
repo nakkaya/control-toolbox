@@ -10,11 +10,11 @@
                 :set-point 0
                 :bounds [10 -10 1 -1]}
           p (pid spec)]
-      (is (= 0.0 (:error @p)))
+      (is (= 0.0 (.getError (:controller @p))))
       (pid p 0)
-      (is (= 0.0 (:error @p)))
+      (is (= 0.0 (.getError (:controller @p))))
       (pid p 5)
-      (is (= -0.5 (:error @p))))))
+      (is (= -0.5 (.getError (:controller @p)))))))
 
 (deftest pid-setpoint-range
   (testing "Test Set Point Range"

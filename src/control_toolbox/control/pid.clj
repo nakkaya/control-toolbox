@@ -32,8 +32,9 @@
    (let [{:keys [controller bounds]} @s
          [in-max in-min out-max out-min] bounds
          [range-max range-min] (power-band out-max out-min)]
-     (.update    controller (scale v in-min in-max range-min range-max))
-     (.getResult controller))))
+
+     (.update controller (scale v in-min in-max range-min range-max))
+     (scale (.getResult controller) range-min range-max out-min out-max))))
 
 (defmacro defpid
   [name & specs]

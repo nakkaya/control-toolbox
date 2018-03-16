@@ -2,17 +2,12 @@
   (:import (edu.dhbw.mannheim.tigers.sumatra.util PIDController))
   (:use control-toolbox.math))
 
-(defn- power-band [out-max out-min]
-  (cond (zero? out-min) [1 0]
-        :default [1 -1]))
-
 (defn- update-pid [s]
   (let [{:keys [controller set-point bounds]} s
-        [in-max in-min out-max out-min] bounds
-        [range-max range-min] (power-band out-max out-min)]
-    (.setSetpoint    controller (scale set-point in-min in-max range-min range-max))
-    (.setInputRange  controller range-min range-max)
-    (.setOutputRange controller range-min range-max)))
+        [in-min in-max out-min out-max] bounds]
+    (.setSetpoint    controller set-point)
+    (.setInputRange  controller in-min in-max)
+    (.setOutputRange controller out-min out-max)))
 
 (defn new-pid [kp ki kd continuous]
   (PIDController. kp ki kd continuous))
@@ -20,7 +15,7 @@
 (defn pid
   ([s]
    (let [{:keys [kp kd ki bounds continuous]} s
-         [in-max in-min out-max out-min] bounds
+         [in-min in-max out-min out-max] bounds
          pid        (new-pid kp ki kd
                              (if (nil? continuous) false continuous))
          controller (atom (assoc s :controller pid))
@@ -29,12 +24,9 @@
      (add-watch controller nil watch-fn)
      controller))
   ([s v]
-   (let [{:keys [controller bounds]} @s
-         [in-max in-min out-max out-min] bounds
-         [range-max range-min] (power-band out-max out-min)]
-
-     (.update controller (scale v in-min in-max range-min range-max))
-     (scale (.getResult controller) range-min range-max out-min out-max))))
+   (let [{:keys [controller bounds]} @s]
+     (.update controller v)
+     (.getResult controller))))
 
 (defmacro defpid
   [name & specs]

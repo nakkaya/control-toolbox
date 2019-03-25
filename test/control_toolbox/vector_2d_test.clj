@@ -30,9 +30,10 @@
     (is (= [6.123233995736766E-17 -1.0] (rotate [1.0 0.0] (Math/toRadians -90))))    
     (is (= [1.0 1.0] 
            (bisect-angle [0.0 5.0] [5.0 0.0])))
-    (is (= true (in-view-cone? [0.0 0.0] [1.0 1.0] (Math/toRadians 90) [5.0 5.0])))
-    (is (= false (in-view-cone? [1.0 3.0] [1.0 1.0] (Math/toRadians 71) [3.0 2.0])))
-    (is (= true (in-view-cone? [1.0 3.0] [1.0 1.0] (Math/toRadians 74) [3.0 2.0])))
+
+    (is (= false (in-view-cone? [0.0 0.0] [0.0 10.0] (Math/toRadians 45) [5.0 0.0])))
+    (is (= true  (in-view-cone? [0.0 0.0] [0.0 10.0] (Math/toRadians 45) [0.0 5.0])))
+
     ;;(is (= true (parallel? [3 -2] [8 -12])))
     (is (= true (parallel? [1.0 2.0] [2.0 4.0])))    
     (is (= false (perpendicular? [1.0 5.0] [5.0 1.0])))

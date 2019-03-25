@@ -65,7 +65,7 @@
 
 (defn in-view-cone? [view-pos direction angle point]
   (let [vp (sub point view-pos)
-        direction (sub point view-pos)
+        direction (sub direction view-pos)
         cos (/ (dot-product vp direction)
                (mul (magnitude vp) (magnitude direction)))]
     (> cos (Math/cos angle))))

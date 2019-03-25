@@ -1,4 +1,4 @@
-(defproject control-toolbox "0.2.12"
+(defproject control-toolbox "0.2.13"
   :description "Robotics Toolbox"
   :url "https://git.nakkaya.com/nakkaya/control-toolbox/tree/master"
   :license {:name "Eclipse Public License"
